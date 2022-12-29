@@ -4,6 +4,10 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 
 <div id="app">
+
+  <div class="text-end">
+    <button class="btn btn-primary" type="button" @click="addItem">新增</button>
+  </div>
   
   <table class="table">
     <thead>
@@ -31,7 +35,7 @@
       </tr>
     </tbody>
   </table>
-  <form>
+  <form v-if="isNew || temp.id">
     <div class="mb-3">
       <label for="productName" class="form-label">產品名稱</label>
       <input type="text" id="productName"
@@ -70,9 +74,15 @@ const App = {
     return {
       products: [],
       temp: {},
+      // 状态，决定是否为新增的产品
+      isNew: false,
     }
   },
   methods: {
+    addItem(){
+      this.isNew = true;
+      this.temp = {};
+    },
     editItem(item) {
       this.temp = { ...item }
     },
@@ -88,6 +98,7 @@ const App = {
           }
         });
       }
+      this.isNew = false;
       this.temp = {};
     }
   },

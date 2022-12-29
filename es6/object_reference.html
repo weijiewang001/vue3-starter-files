@@ -35,12 +35,21 @@
 //   obj: {}
 // }
 
+// const person2 = Object.assign({}, person);
+// const person3 = {
+//   ...person
+// }
+// console.log(person === person2 , person === person3)
+
 
 // #3-2 深層拷貝
-// const person = {
-//   name: '小明',
-//   obj: {}
-// }
+const person = {
+  name: '小明',
+  obj: {}
+}
+
+const person2 = JSON.parse(JSON.stringify(person));
+console.log(person2);
 
 </script>
 <!-- 🙇🙇練習結束🙇🙇 -->

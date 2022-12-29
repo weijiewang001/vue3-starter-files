@@ -18,7 +18,7 @@
   <p>小明，你是吃飽沒？</p>
   <p>{{ checkAnswer ? '吃飽了' : '還沒'}}</p>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="check1" >
+    <input type="checkbox" v-model="checkAnswer" class="form-check-input" id="check1" >
     <label class="form-check-label" for="check1">小明回覆</label>
   </div>
 
@@ -36,15 +36,15 @@
   <p>你還要吃什麼？</p>
   <p>{{ checkAnswer3.join(' ') }}</p>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="check3" value="蛋餅" >
+    <input type="checkbox" class="form-check-input" id="check3" v-model="checkAnswer3" value="蛋餅" >
     <label class="form-check-label" for="check3">蛋餅</label>
   </div>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="check4" value="蘿蔔糕" >
+    <input type="checkbox" class="form-check-input" id="check4" v-model="checkAnswer3"  value="蘿蔔糕" >
     <label class="form-check-label" for="check4">蘿蔔糕</label>
   </div>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="check5" value="豆漿" >
+    <input type="checkbox" class="form-check-input" id="check5" v-model="checkAnswer3"  value="豆漿" >
     <label class="form-check-label" for="check5">豆漿</label>
   </div>
 
@@ -53,15 +53,15 @@
   <p>你還要吃什麼？</p>
   <p>{{ radioAnswer }}</p>
   <div class="form-check">
-    <input type="radio" class="form-check-input" id="radio1" value="蛋餅" >
+    <input type="radio" class="form-check-input" id="radio1" v-model="radioAnswer" value="蛋餅" >
     <label class="form-check-label" for="radio1">蛋餅</label>
   </div>
   <div class="form-check">
-    <input type="radio" class="form-check-input" id="radio2" value="蘿蔔糕" >
+    <input type="radio" class="form-check-input" id="radio2" v-model="radioAnswer" value="蘿蔔糕" >
     <label class="form-check-label" for="radio2">蘿蔔糕</label>
   </div>
   <div class="form-check">
-    <input type="radio" class="form-check-input" id="radio3" value="豆漿" >
+    <input type="radio" class="form-check-input" id="radio3" v-model="radioAnswer" value="豆漿" >
     <label class="form-check-label" for="radio3">豆漿</label>
   </div>
 
@@ -69,15 +69,17 @@
   <h3>select 單選</h3>
   <p>你還要吃什麼？</p>
   <p>{{ selectAnswer }}</p>
-  <select class="form-select">
-    <option >說吧，你要吃什麼？</option>
+  <select class="form-select" v-model="selectAnswer">
+    <option value="" disabled>說吧，你要吃什麼？</option>
+    <option :value="item.name" v-for="item in products" :key="item.name">
+      {{item.name}} / {{item.price}} 元</option>
   </select>
 
   <hr>
   <h3>select 多選</h3>
   <p>你還要吃什麼？</p>
   <p>{{ selectAnswer2 }}</p>
-  <select class="form-select" v-model="selectAnswer2">
+  <select class="form-select" multiple v-model="selectAnswer2">
     <option selected disabled value="">說吧，你要吃什麼？</option>
     <option :value="item.name" v-for="item in products" :key="item.name">
     {{item.name}} / {{item.price}} 元</option>

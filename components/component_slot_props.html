@@ -7,8 +7,9 @@
   <h3>插巢 Prop</h3>
   <p>將元件內的變數取出使用，稱為 slot prop</p>
   <card>
-    <template>
+    <template v-slot:default="slotProps">
       我想取出元件的值來使用
+      {{ slotProps.productsssss.name }}
     </template>
   </card>
   <hr>
@@ -18,7 +19,9 @@
     <template #header>
       買早餐
     </template>
-    <template #default>
+    <template #default="{ product, veganName='预设值'}">
+      {{ product.name }}
+      {{ veganName}}
     </template>
   </card2>
 </div>
@@ -30,7 +33,7 @@
         product: {
           name: '蛋餅',
           price: 30,
-          vegan: false
+          vegan: true,
         }
       }
     },
@@ -39,7 +42,7 @@
   app.component('card', {
     data() {
       return {
-        product: {
+        productsssss: {
           name: '蛋餅',
           price: 30,
           vegan: false
@@ -48,7 +51,7 @@
     },
     template: `<div class="card" style="width: 18rem;">
       <div class="card-body" >
-        <slot :product="product"></slot>
+        <slot :productsssss="productsssss"></slot>
       </div>
     </div>`
   });
@@ -64,9 +67,11 @@
       console.log()
       this.veganName = this.product.vegan ? '素食' : '非素食';
     },
+    //预设值为
+    // :veganName='veganName'
     template: `<div class="card" style="width: 18rem;">
       <div class="card-body" >
-        <slot :product="product" :veganName="veganName"></slot>
+        <slot :product="product"></slot>
       </div>
     </div>`
   })

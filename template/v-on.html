@@ -20,19 +20,22 @@
   <input type="text">
   <br><br>
   <h4>form submit 事件</h4>
-  <form>
+  <form @submit.prevent="submitForm">
     <input type="text" v-model="name">
     <button>送出表單</button>
   </form>
   <hr>
-  <h3>動態事件 []</h3>
-  <input type="text">
+  <h3>動態事件 </h3>
+  <input type="text" @[event]="dynamicEvent">
   <input type="text" v-model="event">
 
   <hr>
   <h3>動態物件方法 {}</h3>
   <!-- 此方法無法傳入參數 -->
-  <button class="box">
+  <button class="box" @="{
+    mousedown: down,
+    mouseup: up
+  }">
   </button>
   <hr>
   <h3>作為運算*</h3>

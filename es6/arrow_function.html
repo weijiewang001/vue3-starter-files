@@ -6,19 +6,29 @@
 // #1 箭頭函式的縮寫
 const arr = [1, 2, 3, 4, 5];
 
+// const filterArr = arr.filter(function(item){
+//   return item % 2; // 结果为真值
+// });
+// console.log(filterArr);
+
+// const filterArr = arr.filter(item =>  item % 2 // 结果为真值
+// );
+// console.log(filterArr);
+
 // const filterArr = arr.filter(item => item % 2); // 取有餘數的值（單數）
 // console.log(filterArr);
 
 
 // #2 This 綁定的差異
 // #2-1 活用觀念，將內層的改為箭頭
+// 箭头函数，没有自己的this
 // var name = '全域'
 // const person = {
 //   name: '小明',
 //   callName: function () { 
 //     console.log('1', this.name); // 1 小明
-//     setTimeout(function () {
-//       console.log('2', this.name); // 2
+//     setTimeout(()=> {
+//       console.log('2', this.name); // 2 全域
 //       console.log('3', this); // 3
 //     }, 10);
 //   },
@@ -33,7 +43,7 @@ const arr = [1, 2, 3, 4, 5];
 //   name: '小明',
 //   callName: () => { 
 //     console.log(this.name); // 請尋找箭頭所在的作用域為何？
-//   },
+//   },//如果有箭头函数，先找外层函数this的指向。外层找不到函数，基本上这个this指向全域
 // }
 // person.callName();
 
@@ -51,22 +61,34 @@ const arr = [1, 2, 3, 4, 5];
 // person.callMe();
 
 // #4 實戰手法
-// var someone = '全域';
+var someone = '全域';
 // function callSomeone() {
 //   console.log(this.someone);
 // }
 
+// 1. this 先指向其他变量
+// 2. 使用箭头函数 在箭头函数中 没有自己的this，所以箭头函数中会使用外层的this
 // var obj4 = {
 //   someone: '物件 4',
 //   fn() {
+//     const vm = this;
 //     // const vm = this; // vm 在 Vue 中意指 ViewModel
-//     setTimeout(function () {
-//       console.log(this.someone);
+//     setTimeout(function () { //callback function 一般是simple call
+//       console.log(vm.someone);
 //     });
 //   }
 // }
+var obj4 = {
+  someone: '物件 4',
+  fn() {
+    // const vm = this; // vm 在 Vue 中意指 ViewModel
+    setTimeout(() => { //callback function 一般是simple call
+      console.log(this.someone);
+    });
+  }
+}
 
-// obj4.fn();
+obj4.fn();
 </script>
 <!-- 🙇🙇練習結束🙇🙇 -->
 </main>

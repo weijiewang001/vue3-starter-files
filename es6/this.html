@@ -4,11 +4,12 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <script>
 // #1 一個函式中包含多少參數
-var a = '全域'
-function fn(params) {
-  console.log(params, this, window, arguments);
-  debugger;
-}
+// var a = '全域'
+// function fn(params) {
+//   console.log(params, this, window, arguments);
+//   debugger;
+// }
+// fn(1,2,3);
 
 // #2 this 的指向為何
 // var obj = {
@@ -18,14 +19,15 @@ function fn(params) {
 //     // debugger;
 //   }
 // }
+// obj.fn(1,2,3);
 
 // #3 注意：this 的指向相當複雜，大部分情境只需要了解其中一種即可(95%)
 // 傳統函式中的 this 只與調用方式有關
-// var someone = '全域';
-// function callSomeone() {
-//   console.log(this.someone);
-// }
-// callSomeone();
+var someone = '全域';
+function callSomeone() {
+  console.log(this.someone);
+}
+// callSomeone(); // simple call
 
 // #4 各種運用變化
 // var obj = {
@@ -40,7 +42,7 @@ function fn(params) {
 //   someone: '物件2',
 //   callSomeone
 // }
-// obj2.callSomeone();
+// obj2.callSomeone();// 功能中的this指向前面的对象，如果功能前面没有this，功能指向全域
 
 // var wrapObj = {
 //   someone: '外層物件',
@@ -50,6 +52,7 @@ function fn(params) {
 //     callSomeone,
 //   }
 // }
+// wrapObj.callSomeone();
 // wrapObj.innerObj.callSomeone();
 
 // var obj3 = {

@@ -17,7 +17,7 @@
 
   <hr>
   <h4>陣列寫法</h4>
-  <button class="btn">請操作本元件</button>
+  <button class="btn" :class="arrayClass">請操作本元件</button>
   <button type="button"
     class="btn btn-outline-primary"
     v-on:click="addClass(['btn-primary', 'active'])">為陣列加入 Class</button>
@@ -25,7 +25,7 @@
   <hr>
   <h2>行內樣式</h2>
   <h4>綁定行內樣式</h4>
-  <div class="box"></div>
+  <div class="box" :style="[styleObject, styleObject2]"></div>
   <div class="box"></div>
   <div class="box"></div>
 </div>

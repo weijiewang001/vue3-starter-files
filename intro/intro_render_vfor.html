@@ -6,15 +6,27 @@
 <div id="app">
   <table class="table">
     <thead>
-      <tr>
-        <th>標題</th>
-        <th>圖片</th>
+      <tr v-for="item in products" :key="item.id">
+        <th>{{ item.name }}</th>
+        <th></th>
         <th>銷售狀態</th>
         <th>編輯</th>
       </tr>
     </thead>
     <tbody>
-      <tr></tr>
+      <tr v-for="item in products" :key="item.id" :class="{'table-success': item.onStock}">
+        <td>{{ item.name }}</td>
+        <td>
+          <img :src="item.imageUrl" alt="">
+        </td>
+        <td>
+          <input type="checkbox" v-model="item.onStock">
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-primary">编辑</button>
+        </td>
+
+      </tr>
     </tbody>
   </table>
   <form>

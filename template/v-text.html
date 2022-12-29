@@ -4,8 +4,8 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <div id="app">
   <h3>字串 v-text 與 <code v-pre>{{}}</code> (Mustache)</h3>
-  <p>在 吃早餐</p>
-  <p><span></span>在<span ></span>吃早餐</p>
+  <p>{{ name }}在{{position}}吃早餐</p>
+  <p><span v-text="name"></span>在<span v-text="position"></span>吃早餐</p>
   <input type="text" v-model="name">
 
   <hr>
@@ -15,23 +15,23 @@
 
   <hr>
   <h3>單次綁定 v-once</h3>
-  <p>{{ name }}在{{ position }}吃早餐</p>
+  <p v-once>{{ name }}在{{ position }}吃早餐</p>
   <input type="text" v-model="name">
 
   <hr>
   <h3>進階技巧：表達式</h3>
-  <p>{{ }}</p>
-  <p>{{ }}</p>
-  <p>{{ }}</p>
-  <p>{{ }}</p>
+  <p>样板字面值： {{ `${name}在 ${position} 吃午餐` }}</p>
+  <p>反转字串 {{ text.split('').reverse().join() }}</p>
+  <p>绑定 methods {{ say('杰伦') }}</p>
+  <p>js 运算 {{ 1+1 }}</p>
 
   <hr>
   <h3>進階技巧：顯示資料狀態</h3>
-  <p></p>
+  <p>显示目前的阵列内容 {{ products }}</p>
 
   <hr>
   <h3>顯示 <span v-pre>{{ }}</span></h3>
-  <p>這段文字不會被轉譯：{{ name }}在{{ position }}吃早餐</p>
+  <p v-pre>这段文字不会被转译：{{ name }}在{{ position }}吃早餐</p>
 </div>
 
 <script>

@@ -25,7 +25,7 @@
         </td>
         <td>
           <button type="button" class="btn btn-outline-primary"
-          >修改</button>
+          @click="editItem(item)">修改</button>
         </td>
       </tr>
     </tbody>
@@ -76,11 +76,26 @@ const App = {
     }
   },
   methods: {
+    editItem(item1){
+      this.temp = {...item1};
+      // console.log('editItem',item1)
+    },
     confirmEdit() {
-      this.temp.id = new Date().getTime();
-      this.temp.onStock = false;
-      this.products.push(this.temp);
-      this.temp = {};
+      if(!this.temp.id){
+        // 新增资料
+        this.temp.id = new Date().getTime();
+        this.temp.onStock = false;
+        this.products.push(this.temp);
+        this.temp = {};
+      } else {
+        this.products.forEach((item, i) => {
+          if (item.id === this.temp.id) {
+            this.products[i] = this.temp;
+          }
+        });
+        this.temp = {};
+      }
+
     }
   },
   created() {

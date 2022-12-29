@@ -5,15 +5,16 @@
 
 <div id="app">
   <h3>使用 ref 定義元素</h3>
-  <input type="text">
+  <input type="text" ref="inputDom">
 
   <h3>使用 ref 取得元件內的資訊</h3>
   <button type="button" @click="getComponentInfo">取得元件資訊</button>
-  <card></card>
+  <card ref="card"></card>
 
   <h3>進階，使用 ref 搭配 Bootstrap</h3>
   Bootstrap Modal: <a href="https://getbootstrap.com/docs/5.0/components/modal/">https://getbootstrap.com/docs/5.0/components/modal/</a>
   <button @click="openModal">開啟 Bootstrap Modal</button>
+  <!-- 原理： 通过tabindex=-1 来控制显示隐藏-->
   <div class="modal" tabindex="-1" ref="modal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -44,14 +45,21 @@ const app = Vue.createApp({
   },
   methods: {
     getComponentInfo() {
-
+      console.log(this.$refs.card)
+      this.$refs.card.title = '被更新的元件标题'
     },
     openModal() {
-
+      // 这个方法是bootmodal的特性，可以打开bootstrap的功能
+      this.bsModal.show();
     }
   },
   mounted() {
+    console.log(this.$refs,this.$refs.inputDom);
+    this.$refs.inputDom.focus();
 
+    // 建立一个新的bootstrap modal实体
+    // 后面这个实体会指向到dom的element上面去
+    this.bsModal = new bootstrap.Modal(this.$refs.modal)
   }
 })
 

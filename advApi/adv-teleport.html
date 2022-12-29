@@ -14,7 +14,7 @@
   <card2></card2>
 
   <h3>實用技巧（取代標題、多個）</h3>
-<!--  <new-title></new-title>-->
+ <!-- <new-title></new-title> -->
 </div>
 
 <script>
@@ -37,15 +37,18 @@ const app = Vue.createApp({
           <button type="button" @click="toggle = !toggle">切換元素顯示</button>
         </div>
       </div>
-
-      <div v-if="toggle" class="alert alert-danger">被招喚的元素</div>
+      <teleport to="#target">
+        <div v-if="toggle" class="alert alert-danger">被招喚的元素</div>
+      </teleport>
     `,
     props: ['item']
   });
 
   app.component('card2', {
     template: `
+    <teleport to=".col-md-3">
       <div class="alert alert-danger">被招喚的元素</div>
+    </teleport>
     `
   })
 
